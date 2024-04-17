@@ -1,0 +1,6 @@
+[submodule "ProcessingElements/Counter/libraries/BlueAXI"]
+	path = ProcessingElements/Counter/libraries/BlueAXI
+	url = https://github.com/esa-tu-darmstadt/BlueAXI.git
+[submodule "ProcessingElements/Counter/libraries/BlueLib"]
+	path = ProcessingElements/Counter/libraries/BlueLib
+	url = https://github.com/esa-tu-darmstadt/BlueLib.git

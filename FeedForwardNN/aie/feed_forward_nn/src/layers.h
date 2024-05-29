@@ -60,7 +60,7 @@ class Layer : public adf::graph
             }
             //adf::connect<>(mmult[i].out, out[i]);
             // connect matrix outputs to bias addition
-            adf::connect<window<(BATCH_SIZE / SPLIT) * (W / SPLIT) * 4>>(mmult[i].out, bias_adds[i].in[0]);
+            adf::connect<window<(BATCH_SIZE / SPLIT) * (W / SPLIT) * 4>>(mmult[i].out[0], bias_adds[i].in[0]);
             adf::connect<window<(BATCH_SIZE / SPLIT) * (W / SPLIT) * 4>>(bias_adds[i].out[0], tanhs[i].in[0]);
             adf::connect<>(tanhs[i].out[0], out[i]);
         }   

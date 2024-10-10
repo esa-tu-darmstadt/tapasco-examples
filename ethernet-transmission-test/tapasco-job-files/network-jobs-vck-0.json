@@ -1,0 +1,110 @@
+[{
+  "Job": "Compose",
+  "Design Frequency": 322,
+  "SkipSynthesis": false,
+  "DeleteProjects": false,
+  "Platforms": [
+    "vck5000"
+  ],
+  "Architectures": [
+    "axi4mm"
+  ],
+  "Composition": {
+    "Composition": [
+      {
+        "Kernel": "EthernetTransmitter",
+        "Count": 1
+      }
+    ]
+  },
+  "Features": [
+    {
+      "Feature": "SFPPLUS",
+      "Properties": {
+        "Mode": "100G",
+        "Datawidth": "256",
+        "Ports": [
+          {
+            "name": "port_1",
+            "mode": "singular",
+            "ic_sync": true,
+            "physical_port": "0"
+          }
+        ],
+        "PEs": [
+          {
+            "ID": "EthernetTransmitter",
+            "Count": "1",
+            "mappings": [
+              {
+                "interface": "AXIS_RX",
+                "direction": "rx",
+                "port": "port_1"
+              },
+              {
+                "interface": "AXIS_TX",
+                "direction": "tx",
+                "port": "port_1"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+},
+{
+  "Job": "Compose",
+  "Design Frequency": 322,
+  "SkipSynthesis": false,
+  "DeleteProjects": false,
+  "Platforms": [
+    "vck5000"
+  ],
+  "Architectures": [
+    "axi4mm"
+  ],
+  "Composition": {
+    "Composition": [
+      {
+        "Kernel": "EthernetReceiver",
+        "Count": 1
+      }
+    ]
+  },
+  "Features": [
+    {
+      "Feature": "SFPPLUS",
+      "Properties": {
+        "Mode": "100G",
+        "Datawidth": "256",
+        "Ports": [
+          {
+            "name": "port_1",
+            "mode": "singular",
+            "ic_sync": true,
+            "physical_port": "0"
+          }
+        ],
+        "PEs": [
+          {
+            "ID": "EthernetReceiver",
+            "Count": "1",
+            "mappings": [
+              {
+                "interface": "AXIS_RX",
+                "direction": "rx",
+                "port": "port_1"
+              },
+              {
+                "interface": "AXIS_TX",
+                "direction": "tx",
+                "port": "port_1"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}]

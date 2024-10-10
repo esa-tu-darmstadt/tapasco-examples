@@ -4,3 +4,15 @@
 [submodule "ProcessingElements/Counter/libraries/BlueLib"]
 	path = ProcessingElements/Counter/libraries/BlueLib
 	url = https://github.com/esa-tu-darmstadt/BlueLib.git
+[submodule "ethernet-transmission-test/hw/EthernetReceiver/libraries/BlueAXI"]
+	path = ethernet-transmission-test/hw/EthernetReceiver/libraries/BlueAXI
+	url = https://github.com/esa-tu-darmstadt/BlueAXI.git
+[submodule "ethernet-transmission-test/hw/EthernetReceiver/libraries/BlueLib"]
+	path = ethernet-transmission-test/hw/EthernetReceiver/libraries/BlueLib
+	url = https://github.com/esa-tu-darmstadt/BlueLib.git
+[submodule "ethernet-transmission-test/hw/EthernetTransmitter/libraries/BlueAXI"]
+	path = ethernet-transmission-test/hw/EthernetTransmitter/libraries/BlueAXI
+	url = https://github.com/esa-tu-darmstadt/BlueAXI.git
+[submodule "ethernet-transmission-test/hw/EthernetTransmitter/libraries/BlueLib"]
+	path = ethernet-transmission-test/hw/EthernetTransmitter/libraries/BlueLib
+	url = https://github.com/esa-tu-darmstadt/BlueLib.git

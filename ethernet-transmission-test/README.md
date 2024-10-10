@@ -1,6 +1,6 @@
 # Ethernet Transmission Test
 
-In this example, we connect two FPGAs using a 100G Ethernet connection.
+In this example, we connect two FPGAs using a 100G Ethernet connection. On one FPGA we use the `EthernetTransmitter` PE to send specific data over the network to a second FPGA, where the `EthernetReceiver` PE waits for the data. The host software checks whether the transmitted data is received correctly. Both FPGAs must be connected to the same host CPU via PCIe and be connected by the respective 100G Ethernet connection to each other.
 
 ## Build Hardware
 
@@ -29,17 +29,19 @@ pushd . && cd </path/to/workspace> && </path/to/tapasco-git>/tapasco-init.sh && 
 tapasco-build-toolflow
 ```
 
-Import both PEs and use one of the example JSON-scripts to build your bitstreams:
+Import both PEs and use one of the example JSON-scripts to build your bitstreams (e.g. for the VCK5000):
 
 ```bash
 tapasco import EthernetReceiver/build/ip/EthernetReceiver.zip as 7445
 tapasco import EthernetTransmitter/build/ip/EthernetTransmitter.zip as 7446
-tapasco --jobsFile tapasco-jobs-files/network-jobs-vck.json
+tapasco --jobsFile tapasco-jobs-files/network-jobs-vck-0.json
 ```
+
+The `tapasco-jobs-files` directory contains four example job files, which build both required bitstreams each. They differ in using the *Alveo U280* or *VCK5000* card and the used physical network port. The naming scheme is `network-jobs-<card>-<port>.json`.
 
 ## Build Software
 
-Edit the path of the `tapasco` dependencie in `sw/Rust/ethernet_transmit_test/Cargo.toml` to point to your cloned TaPaSCo git. Then you can build the software using:
+Edit the path of the `tapasco` dependency in `sw/Rust/ethernet_transmit_test/Cargo.toml` to point to your cloned TaPaSCo git. Then you can build the software using:
 
 ```bash
 cd sw/Rust/ethernet_transmit_test

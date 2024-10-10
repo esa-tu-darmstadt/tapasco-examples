@@ -1,0 +1,30 @@
+[ {
+  "Job": "Compose",
+  "Design Frequency": 312.5,
+  "SkipSynthesis": false,
+  "DeleteProjects": false,
+  "Platforms": [ "vck5000" ],
+  "Architectures": [ "axi4mm" ],
+  "Composition": {
+    "Composition": [ {
+        "Kernel": "DataStreamerVN",
+        "Count": 1
+    } ]
+  },
+  "Features": [  {
+      "Feature": "DMA-Streaming",
+      "Properties": {
+        "master_port": "M_AXIS_DMA",
+       	"slave_port": "S_AXIS_DMA"
+      }
+  },
+  {
+      "Feature": "AI-Engine",
+      "Properties": {
+        "adf": "PATH_TO_THIS_REPO/aie/libadf.a",
+        "in_x": "M_AXIS_AIE_X",
+        "in_y": "M_AXIS_AIE_Y",
+        "out_z": "S_AXIS_AIE"
+      }
+  } ]
+} ]

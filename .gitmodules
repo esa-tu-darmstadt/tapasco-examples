@@ -16,3 +16,9 @@
 [submodule "ethernet-transmission-test/hw/EthernetTransmitter/libraries/BlueLib"]
 	path = ethernet-transmission-test/hw/EthernetTransmitter/libraries/BlueLib
 	url = https://github.com/esa-tu-darmstadt/BlueLib.git
+[submodule "Vector-Norm/hw/DataStreamerVN/libraries/BlueLib"]
+	path = Vector-Norm/hw/DataStreamerVN/libraries/BlueLib
+	url = https://github.com/esa-tu-darmstadt/BlueLib.git
+[submodule "Vector-Norm/hw/DataStreamerVN/libraries/BlueAXI"]
+	path = Vector-Norm/hw/DataStreamerVN/libraries/BlueAXI
+	url = https://github.com/esa-tu-darmstadt/BlueAXI.git

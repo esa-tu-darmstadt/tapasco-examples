@@ -57,7 +57,7 @@ tapasco --jobsFile vector-norm.json
 
 if [ -f $TAPASCO_WORK_DIR/compose/axi4mm/vck5000/DataStreamerVN/001/312.5+AI-Engine+DMA-Streaming/axi4mm-vck5000--DataStreamerVN_1--313.pdi ]; then
 	echo "Device image created successfully"
-	echo "PDI file: $TAPASCO_WORK_DIR/compose/axi4mm/vck5000/DataStreamer__WeightStreamer/001_001/312.5+AI-Engine+DMA-Streaming/axi4mm-vck5000--DataStreamer_1_WeightStreamer_1--313.pdi"
+	echo "PDI file: $TAPASCO_WORK_DIR/compose/axi4mm/vck5000/DataStreamerVN/001/312.5+AI-Engine+DMA-Streaming/axi4mm-vck5000--DataStreamerVN_1--313.pdi"
 else
 	echo "ERROR: Failed to create device image"
 fi

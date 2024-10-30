@@ -21,6 +21,9 @@ int main(int argc, char **argv) {
         if (num_samples % 1024) {
                 std::cout << "ERROR: number of samples must be multiple of 1024" << std::endl;
                 return -1;
+        } else if (num_samples > (1UL << 32)) {
+                std::cout << "WARNING: truncating to maximum number of samples (" << (1UL << 32) << ")" <<  std::endl;
+                num_samples = 1UL << 32;
         }
 
         std::vector<float> input;

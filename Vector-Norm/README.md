@@ -11,6 +11,7 @@ Use the `build_bitstream.sh` script to build the PE, AIE graph and generate the 
 - Make sure `vivado` is on your PATH (use at least Vivado 2023.1)
 - Export the environment variable `VITIS_BASE` pointing to the installation directory of your Vitis installation
 - Export `PLATFORM_FILE` pointing to the *.xpfm file for the VCK5000 (platform file is not included in TaPaSCo)
+- Install all dependencies of the TaPaSCo toolflow as described [here](https://github.com/esa-tu-darmstadt/tapasco?tab=readme-ov-file#prerequisites-for-toolflow)
 - *Optional:* Let `BSV_TOOLS` point to your [BSVTools](https://github.com/esa-tu-darmstadt/BSVTools) installation and use `source tapasco-setup.sh` in your custom TaPaSCo workspace. Otherwise the build script will clone and install BSVTools and TaPaSCo automatically.
 
 You will find the generated PDI-file in `$TAPASCO_WORK_DIR/compose/axi4mm/vck5000/DataStreamerVN/001/312.5+AI-Engine+DMA-Streaming/axi4mm-vck5000--DataStreamerVN_1--313.pdi`.

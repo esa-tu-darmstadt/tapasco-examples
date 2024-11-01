@@ -43,7 +43,7 @@ Next, we specify which PEs and how many of them should be included in the design
 ```
 
 Finally, we configure the TaPaSCo features. Here, we use the `DMA-Streaming` and `AI-Engine` features.
-For the `DMA-Streaming` feature we need to specify the interface ports used for the host-to-device and device-to-host streams. Note that only one stream in each direction is currently suppoerted by TaPaSCo.
+For the `DMA-Streaming` feature we need to specify the interface ports used for the host-to-device and device-to-host streams. Note that only one stream in each direction is currently supported by TaPaSCo.
 The `AI-Engine` feature requires the path to the `libadf.a` graph, and you may also specify connections between the PLIOs of your AIE graph and PE interfaces.
 
 

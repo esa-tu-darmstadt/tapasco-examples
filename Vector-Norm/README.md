@@ -22,18 +22,18 @@ The build script uses a `.json` jobs file to generate the bitstream. In the foll
 
 First, we specify some general options for the desired design:
 
-```json
-"Job": "Compose",              | # type of job
-"Design Frequency": 312.5,     | # clock frequency for PEs
-"SkipSynthesis": false,        | # if 'true' only block design is generated (no synthesis)
-"DeleteProjects": false,       | # delete Vivado project after bitstream generation
-"Platforms": [ "vck5000" ],    | # list of platforms to build the bitstream for
-"Architectures": [ "axi4mm" ], | # only 'axi4mm' supported currently
+```jsonc
+"Job": "Compose",              // type of job
+"Design Frequency": 312.5,     // clock frequency for PEs
+"SkipSynthesis": false,        // if 'true' only block design is generated (no synthesis)
+"DeleteProjects": false,       // delete Vivado project after bitstream generation
+"Platforms": [ "vck5000" ],    // list of platforms to build the bitstream for
+"Architectures": [ "axi4mm" ], // only 'axi4mm' supported currently
 ```
 
 Next, we specify which PEs and how many of them should be included in the design. In this example we only have one PE of type `DataStreamerVN`:
 
-```json
+```jsonc
 "Composition": {
   "Composition": [ {
       "Kernel": "DataStreamerVN",
@@ -47,23 +47,23 @@ For the `DMA-Streaming` feature we need to specify the interface ports used for 
 The `AI-Engine` feature requires the path to the `libadf.a` graph, and you may also specify connections between the PLIOs of your AIE graph and PE interfaces.
 
 
-```json
-"Features": [  {                               |
-    "Feature": "DMA-Streaming",                | # feature name
-    "Properties": {                            |
-      "master_port": "M_AXIS_DMA",             | # name of PE interface for dev-to-host stream
-      "slave_port": "S_AXIS_DMA"               | # name of PE interface for host-to-dev stream
-    }                                          |
-  },                                           |
-  {                                            |
-    "Feature": "AI-Engine",                    |
-    "Properties": {                            |
-      "adf": "/path/to/libadf.a",              | # path to libadf.a-file
-      "in_x": "M_AXIS_AIE_X",                  | # connection between AIE graph PLIO and PE interface
-      "in_y": "M_AXIS_AIE_Y",                  |
-      "out_z": "S_AXIS_AIE"                    |
-    }                                          |
-} ]                                            |
+```jsonc
+"Features": [  {
+    "Feature": "DMA-Streaming",      // feature name
+    "Properties": {
+      "master_port": "M_AXIS_DMA",   // name of PE interface for dev-to-host stream
+      "slave_port": "S_AXIS_DMA"     // name of PE interface for host-to-dev stream
+    }
+  },
+  {
+    "Feature": "AI-Engine",
+    "Properties": {
+      "adf": "/path/to/libadf.a",    // path to libadf.a-file
+      "in_x": "M_AXIS_AIE_X",        // connection between AIE graph PLIO and PE interface
+      "in_y": "M_AXIS_AIE_Y",
+      "out_z": "S_AXIS_AIE"
+    }
+} ]
 ```
 
 # Build Software

@@ -276,7 +276,7 @@ module mkNVMeReaderWriter(NVMeReaderWriter);
     /**
      * NVMe Write Engine
      */
-    FIFO#(Bit#(MEM_DATA_WIDTH)) nvmeWriteDataFifo <- mkSizedBRAMFIFO(255);
+    FIFO#(Tuple2#(Bit#(MEM_DATA_WIDTH), Bool)) nvmeWriteDataFifo <- mkSizedBRAMFIFO(255);
     Reg#(Maybe#(Bit#(MEM_ADDR_WIDTH))) currentDdrReadAddr <- mkReg(tagged Invalid);
     Reg#(Bit#(20)) memReadReqPageCount <- mkReg(0);
     FIFO#(Bit#(0)) inFlightMemReadTransfers <- mkSizedFIFO(4);
@@ -315,10 +315,7 @@ module mkNVMeReaderWriter(NVMeReaderWriter);
     // receive and buffer data from DDR
     rule receiveMemReadData if (axiMemRd.snoop().id == 0);
         let r <- axiMemRd.response.get();
-        nvmeWriteDataFifo.enq(r.data);
-        if (r.last) begin
-            inFlightMemReadTransfers.deq();
-        end
+        nvmeWriteDataFifo.enq(tuple2(r.data, r.last));
     endrule
 
     // send write command to NVMeStreamer IP (only address)
@@ -341,7 +338,10 @@ module mkNVMeReaderWriter(NVMeReaderWriter);
     Reg#(Bit#(26)) nvmeWriteDataCount <- mkReg(0);
     FIFO#(Bit#(0)) pendingNvmeWriteResponse <- mkFIFO;
     rule sendNvmeWriteData if (!sendNvmeWriteCmdSwitch);
-        let d = nvmeWriteDataFifo.first();
+        match {.d, .l} = nvmeWriteDataFifo.first();
+        if (l) begin
+            inFlightMemReadTransfers.deq();
+        end
         nvmeWriteDataFifo.deq();
         Bool last = nvmeWriteDataCount + 1 == nextNVMeWriteCmdLenFifo.first();
         let p = AXI4_Stream_Pkg {

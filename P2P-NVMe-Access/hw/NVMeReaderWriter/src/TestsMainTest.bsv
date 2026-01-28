@@ -102,7 +102,7 @@ module [Module] mkTestsMainTest(TestHelper::TestHandler);
                     $finish;
                 end
             endaction
-            printColorTimed(BLUE, $format("Start receiving data for NVMe write transfer #%0d (addr = 0x%x, len = 0x%x)", nvmeWriteID, nvmeWriteLength));
+            printColorTimed(BLUE, $format("Start receiving data for NVMe write transfer #%0d (addr = 0x%x, len = 0x%x)", nvmeWriteID, nvmeWriteAddress, nvmeWriteLength));
             nvmeWriteCount <= 0;
             breakLoop <= False;
             while (truncate(nvmeWriteCount) <= (nvmeWriteLength >> 6) && !breakLoop) seq

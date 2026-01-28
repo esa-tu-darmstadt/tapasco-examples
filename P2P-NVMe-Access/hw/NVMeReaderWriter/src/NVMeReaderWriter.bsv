@@ -229,7 +229,7 @@ module mkNVMeReaderWriter(NVMeReaderWriter);
     // issue write requests as full 4K bursts as soon as enough data is buffered
     Reg#(Maybe#(Bit#(MEM_ADDR_WIDTH))) currentDdrWriteAddr <- mkReg(tagged Invalid);
     Reg#(Bit#(20)) memWriteReqPageCount <- mkReg(0);
-    FIFO#(Bit#(0)) inFlightMemWriteTransfers <- mkSizedFIFO(4);
+    FIFOF#(Bit#(0)) inFlightMemWriteTransfers <- mkSizedFIFOF(4);
     rule sendMemWriteRequest;
         nvmeReadTriggerMemWrite.deq();
 
@@ -249,6 +249,7 @@ module mkNVMeReaderWriter(NVMeReaderWriter);
             inFlightReadCmdFifo.deq();
             currentDdrWriteAddr <= tagged Invalid;
             memWriteReqPageCount <= 0;
+            nvmeReadCompletionCount <= nvmeReadCompletionCount + 1;
         end
         else begin
             currentDdrWriteAddr <= tagged Valid (memWriteAddr + 4096);
@@ -270,7 +271,6 @@ module mkNVMeReaderWriter(NVMeReaderWriter);
     rule discardMemWriteResponse;
         let r <- axi4_write_response(axiMemWr);
         inFlightMemWriteTransfers.deq();
-        nvmeReadCompletionCount <= nvmeReadCompletionCount + 1;
     endrule
 
     /**
@@ -373,7 +373,7 @@ module mkNVMeReaderWriter(NVMeReaderWriter);
 
     // send interrupt after all commands have been completed
     Reg#(Bool) intrReg <- mkDReg(False);
-    rule checkForCompletion if (state == RUNNING);
+    rule checkForCompletion if (state == RUNNING && !inFlightMemWriteTransfers.notEmpty());
         let completions = nvmeReadCompletionCount + nvmeWriteCompletionCount;
         if (completions == nrCmds) begin
             intrReg <= True;

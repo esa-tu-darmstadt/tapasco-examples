@@ -147,7 +147,7 @@ Then use our build script to generate the desired bitstream:
 bash build_bitstream <memory_type> <platform>
 ```
 
-`<memory_typer>` must be one of `uram`, `host-dram` and `on-board-dram`. See [here](https://github.com/esa-tu-darmstadt/tapasco/blob/master/documentation/tapasco-nvme.md#nvme-streamer-ip-and-memory-choice-for-data-transfers) for a detailed description on the choice of memory for data transfers between FPGA and NVMe device. Consider that on-board DRAM is also used to hold the data which is transferred to the NVMe device limiting the available bandwidth. Supported platforms are currently `AU280` and `xupvvh`.
+`<memory_type>` must be one of `uram`, `host-dram` and `on-board-dram`. See [here](https://github.com/esa-tu-darmstadt/tapasco/blob/master/documentation/tapasco-nvme.md#nvme-streamer-ip-and-memory-choice-for-data-transfers) for a detailed description on the choice of memory for data transfers between FPGA and NVMe device. Consider that on-board DRAM is also used to hold the data which is transferred to the NVMe device limiting the available bandwidth. Supported platforms are currently `AU280` and `xupvvh`.
 
 The bash script compiles the Bluespec PE, clones and builds TaPaSCo, creates a workspace, and finally generates the bitstream with the help of a job file. The job file will be written to the `build` directory and can be used as basis for your own projects. Also, the job file shows how to include custom constraint files. In this example, we constrain components of the memory subsystem to a specific SLR to achieve timing closure, since we have seen during testing that Vivado often chooses a suboptimal placement.
 
@@ -160,7 +160,7 @@ tapasco-load-bitstream <bitstream_file> --verbose [--reload-driver] [--adapter <
 The `--adapter` option is required if you have more than one FPGA and programming adapter attached to this machine. Use
 
 ```bash
-tapasco-load-bitstream <bitstream_file> --verbose --list-adapters
+tapasco-load-bitstream <bitstream_file> --verbose --list-adapter
 ```
 
 to list all adapters connected to this machine to find the correct one.
@@ -170,7 +170,7 @@ to list all adapters connected to this machine to find the correct one.
 Install required prerequisites and build the TaPaSCo runtime as described [here](https://github.com/esa-tu-darmstadt/tapasco?tab=readme-ov-file#prerequisites-for-compiling-the-runtime). Then build the host software using CMake:
 
 ```bash
-mkdir -p sw/build && cd sw/build && cmake .. && make
+mkdir -p sw/C++/build && cd sw/C++/build && cmake .. && make
 ```
 
 Before running the host software, you also have to compile and load the NVMe driver. First, identify the NVMe device you want to use for this test using `lsblk` and `lspcie`. Make sure that it is not holding any data or your operating system, as we will write random raw data to the device. Unload the Linux driver for the device if necessary:
@@ -189,5 +189,5 @@ Finally, run the host software:
 
 ```bash
 export RUST_LOG=info # optionally for additional output 
-cd sw/build && ./nvme-rw-sw [--help] [--reset-io-queue] [--release-io-queue]
+cd sw/C++/build && ./nvme-rw-sw [--help] [--reset-io-queue] [--release-io-queue]
 ```

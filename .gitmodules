@@ -4,3 +4,15 @@
 [submodule "BSV-libraries/BlueLib"]
 	path = BSV-libraries/BlueLib
 	url = https://github.com/esa-tu-darmstadt/BlueLib.git
+[submodule "FeedForwardNN/hw/DataStreamer/libraries/BlueAXI"]
+	path = FeedForwardNN/hw/DataStreamer/libraries/BlueAXI
+	url = https://github.com/esa-tu-darmstadt/BlueAXI.git
+[submodule "FeedForwardNN/hw/DataStreamer/libraries/BlueLib"]
+	path = FeedForwardNN/hw/DataStreamer/libraries/BlueLib
+	url = https://github.com/esa-tu-darmstadt/BlueLib.git
+[submodule "FeedForwardNN/hw/WeightStreamer/libraries/BlueAXI"]
+	path = FeedForwardNN/hw/WeightStreamer/libraries/BlueAXI
+	url = https://github.com/esa-tu-darmstadt/BlueAXI.git
+[submodule "FeedForwardNN/hw/WeightStreamer/libraries/BlueLib"]
+	path = FeedForwardNN/hw/WeightStreamer/libraries/BlueLib
+	url = https://github.com/esa-tu-darmstadt/BlueLib.git

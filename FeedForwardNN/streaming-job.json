@@ -1,0 +1,122 @@
+[{
+  "Job": "Import",
+  "Zip": "./hw/DataStreamer/build/ip/DataStreamer.zip",
+  "Id": 2001,
+  "Platforms": [
+    "vck5000"
+  ]
+},{
+  "Job": "Import",
+  "Zip": "./hw/WeightStreamer/build/ip/WeightStreamer.zip",
+  "Id": 2002,
+  "Platforms": [
+    "vck5000"
+  ]
+},
+{
+  "Job": "Compose",
+  "Design Frequency": 312.5,
+  "SkipSynthesis": false,
+  "DeleteProjects": false,
+  "Platforms": [
+    "vck5000"
+  ],
+  "Architectures": [
+    "axi4mm"
+  ],
+  "Composition": {
+    "Composition": [
+      {
+        "Kernel": "DataStreamer",
+        "Count": 1
+      },
+      {
+        "Kernel": "WeightStreamer",
+        "Count": 1
+      }
+    ]
+  },
+  "Features": [
+    {
+      "Feature": "DMA-Streaming",
+      "Properties": {
+        "slave_port": "S_AXIS_DMA",
+        "master_port": "M_AXIS_DMA"
+      }
+    },
+    {
+      "Feature": "AI-Engine",
+      "Properties": {
+        "adf": "PATH_TO_THIS_REPO/aie/feed_forward_nn/libadf.a",
+        "Features0In_CASC_0": "M_AXIS_FEAT_0",
+        "Features0In_CASC_1": "M_AXIS_FEAT_1",
+        "Features0In_CASC_2": "M_AXIS_FEAT_2",
+        "Features0In_CASC_3": "M_AXIS_FEAT_3",
+        "Weights0In0_CASC_0": "M_AXIS_WEIGHTS_0",
+        "Weights0In0_CASC_1": "M_AXIS_WEIGHTS_1",
+        "Weights0In0_CASC_2": "M_AXIS_WEIGHTS_2",
+        "Weights0In0_CASC_3": "M_AXIS_WEIGHTS_3",
+        "Weights0In1_CASC_0": "M_AXIS_WEIGHTS_4",
+        "Weights0In1_CASC_1": "M_AXIS_WEIGHTS_5",
+        "Weights0In1_CASC_2": "M_AXIS_WEIGHTS_6",
+        "Weights0In1_CASC_3": "M_AXIS_WEIGHTS_7",
+        "Weights0In2_CASC_0": "M_AXIS_WEIGHTS_8",
+        "Weights0In2_CASC_1": "M_AXIS_WEIGHTS_9",
+        "Weights0In2_CASC_2": "M_AXIS_WEIGHTS_10",
+        "Weights0In2_CASC_3": "M_AXIS_WEIGHTS_11",
+        "Weights0In3_CASC_0": "M_AXIS_WEIGHTS_12",
+        "Weights0In3_CASC_1": "M_AXIS_WEIGHTS_13",
+        "Weights0In3_CASC_2": "M_AXIS_WEIGHTS_14",
+        "Weights0In3_CASC_3": "M_AXIS_WEIGHTS_15",
+        "Weights0In4_CASC_0": "M_AXIS_WEIGHTS_16",
+        "Weights0In4_CASC_1": "M_AXIS_WEIGHTS_17",
+        "Weights0In4_CASC_2": "M_AXIS_WEIGHTS_18",
+        "Weights0In4_CASC_3": "M_AXIS_WEIGHTS_19",
+        "Weights0In5_CASC_0": "M_AXIS_WEIGHTS_20",
+        "Weights0In5_CASC_1": "M_AXIS_WEIGHTS_21",
+        "Weights0In5_CASC_2": "M_AXIS_WEIGHTS_22",
+        "Weights0In5_CASC_3": "M_AXIS_WEIGHTS_23",
+        "Weights0In6_CASC_0": "M_AXIS_WEIGHTS_24",
+        "Weights0In6_CASC_1": "M_AXIS_WEIGHTS_25",
+        "Weights0In6_CASC_2": "M_AXIS_WEIGHTS_26",
+        "Weights0In6_CASC_3": "M_AXIS_WEIGHTS_27",
+        "Weights0In7_CASC_0": "M_AXIS_WEIGHTS_28",
+        "Weights0In7_CASC_1": "M_AXIS_WEIGHTS_29",
+        "Weights0In7_CASC_2": "M_AXIS_WEIGHTS_30",
+        "Weights0In7_CASC_3": "M_AXIS_WEIGHTS_31",
+        "Weights1In0_CASC_0": "M_AXIS_WEIGHTS_32",
+        "Weights1In0_CASC_1": "M_AXIS_WEIGHTS_33",
+        "Weights1In0_CASC_2": "M_AXIS_WEIGHTS_34",
+        "Weights1In0_CASC_3": "M_AXIS_WEIGHTS_35",
+        "Weights1In1_CASC_0": "M_AXIS_WEIGHTS_36",
+        "Weights1In1_CASC_1": "M_AXIS_WEIGHTS_37",
+        "Weights1In1_CASC_2": "M_AXIS_WEIGHTS_38",
+        "Weights1In1_CASC_3": "M_AXIS_WEIGHTS_39",
+        "Weights1In2_CASC_0": "M_AXIS_WEIGHTS_40",
+        "Weights1In2_CASC_1": "M_AXIS_WEIGHTS_41",
+        "Weights1In2_CASC_2": "M_AXIS_WEIGHTS_42",
+        "Weights1In2_CASC_3": "M_AXIS_WEIGHTS_43",
+        "Weights1In3_CASC_0": "M_AXIS_WEIGHTS_44",
+        "Weights1In3_CASC_1": "M_AXIS_WEIGHTS_45",
+        "Weights1In3_CASC_2": "M_AXIS_WEIGHTS_46",
+        "Weights1In3_CASC_3": "M_AXIS_WEIGHTS_47",
+        "Weights2In0_CASC_0": "M_AXIS_WEIGHTS_48",
+        "Weights2In0_CASC_1": "M_AXIS_WEIGHTS_49",
+        "Weights2In0_CASC_2": "M_AXIS_WEIGHTS_50",
+        "Weights2In0_CASC_3": "M_AXIS_WEIGHTS_51",
+        "Weights2In1_CASC_0": "M_AXIS_WEIGHTS_52",
+        "Weights2In1_CASC_1": "M_AXIS_WEIGHTS_53",
+        "Weights2In1_CASC_2": "M_AXIS_WEIGHTS_54",
+        "Weights2In1_CASC_3": "M_AXIS_WEIGHTS_55",
+        "Weights2In2_CASC_0": "M_AXIS_WEIGHTS_56",
+        "Weights2In2_CASC_1": "M_AXIS_WEIGHTS_57",
+        "Weights2In2_CASC_2": "M_AXIS_WEIGHTS_58",
+        "Weights2In2_CASC_3": "M_AXIS_WEIGHTS_59",
+        "Weights2In3_CASC_0": "M_AXIS_WEIGHTS_60",
+        "Weights2In3_CASC_1": "M_AXIS_WEIGHTS_61",
+        "Weights2In3_CASC_2": "M_AXIS_WEIGHTS_62",
+        "Weights2In3_CASC_3": "M_AXIS_WEIGHTS_63"
+      }
+    }
+  ]
+}]

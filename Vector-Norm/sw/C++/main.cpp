@@ -66,7 +66,7 @@ int main(int argc, char **argv) {
                 float y = input[i * 2 + 1];
                 float ref = std::sqrt(x * x + y * y);
 
-                float diff = ref - output[i];
+                float diff = std::fabs(ref - output[i]);
                 if (diff > ref * 1e-5) {
                         std::cout << "ERROR: Wrong result at index " << i << ": ";
                         std::cout << output[i] << "(act) vs. " << ref << " (ref)" << std::endl;

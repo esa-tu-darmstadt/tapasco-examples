@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 3.5.1 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 set(CMAKE_CXX_STANDARD 23)
 
 project(vector-norm-prj)
 
 find_package(Threads)
-find_package(Boost COMPONENTS program_options REQUIRED)
+find_package(Boost CONFIG COMPONENTS program_options REQUIRED)
 find_package(Tapasco REQUIRED)
 
 add_executable(vector-norm main.cpp)
